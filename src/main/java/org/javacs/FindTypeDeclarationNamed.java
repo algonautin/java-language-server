@@ -12,7 +12,9 @@ class FindTypeDeclarationNamed extends TreeScanner<ClassTree, String> {
     @Override
     public ClassTree visitCompilationUnit(CompilationUnitTree t, String find) {
         var name = Objects.toString(t.getPackageName(), "");
-        qualifiedName.add(name);
+        if (!name.isEmpty()) {
+            qualifiedName.add(name);
+        }
         return super.visitCompilationUnit(t, find);
     }
 
